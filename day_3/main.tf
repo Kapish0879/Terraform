@@ -2,9 +2,9 @@ data "aws_vpc" "default" {
     default = true
 }
 
-data "aws_subnet_ids" "default" {
+data "aws_subnets" "default" {
     name = "default"
-    vpc_id = data.aws_vpc.default.id
+    values = [data.aws_vpc.default.id]
 }
 
 #CREATION OF SECURITY GROUPS
@@ -58,7 +58,7 @@ resource "aws_lb" "my_load_balancer" {
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.my_sg.id]
-    subnets            = data.aws_subnet_ids.default.ids
+    subnets            = data.aws_subnets.default.ids
   
 }
 
@@ -87,7 +87,7 @@ resource "aws_autoscaling_group" "my_asg" {
     max_size                  = 3
     min_size                  = 1
     desired_capacity          = 2
-    vpc_zone_identifier       = data.aws_subnet_ids.default.ids
+    vpc_zone_identifier       = data.aws_subnets.default.ids
     launch_template {
         id      = aws_launch_template.my_launch_tamplate.id
         version = "$Latest"
