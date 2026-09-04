@@ -42,7 +42,7 @@ resource "aws_security_group" "my_sg" {
 
 #creation load balancer
 
-resource "target_group" "my_target_group" {
+resource "aws_lb_target_group" "my_target_group" {
     name     = "my-target-group"
     port     = 80
     protocol = "HTTP"
