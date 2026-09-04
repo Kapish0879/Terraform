@@ -44,7 +44,7 @@ resource "aws_security_group" "my_sg" {
 #creation load balancer
 
 resource "aws_lb_target_group" "my_target_group" {
-    name     = "my-target-group"
+    name     = "my-TG"
     port     = 80
     protocol = "HTTP"
     vpc_id   = data.aws_vpc.default.id
@@ -55,7 +55,7 @@ resource "aws_lb_target_group" "my_target_group" {
 }
 
 resource "aws_lb" "my_load_balancer" {
-    name               = "my-load-balancer"
+    name               = "my-LB"
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.my_sg.id]
