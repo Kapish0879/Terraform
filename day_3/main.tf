@@ -2,15 +2,14 @@ data "aws_vpc" "default" {
     default = true
 }
 
-data "aws_subnets" "selected" {
+data "aws_subnets" "default" {
   filter {
     name   = "vpc-id"
-    values = ["data.aws_vpc.default.id"]
+    values = [data.aws_vpc.default.id]
   }
 }
 
 #CREATION OF SECURITY GROUPS
-
 resource "aws_security_group" "my_sg" {
     name        = "my-security-group"
     description = "My security group"
