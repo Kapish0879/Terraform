@@ -79,7 +79,7 @@ resource "aws_launch_template" "my_launch_tamplate"{
         image_id      = var.ami
         instance_type = var.instance_type
         key_name      = var.key_name
-        user_data    = file("/home/ubuntu/Terraform/day_3/user_data.sh")
+        user_data    = filebase64("/home/ubuntu/Terraform/day_3/user_data.sh")
 
 }
 
