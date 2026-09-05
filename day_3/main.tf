@@ -11,8 +11,8 @@ data "aws_subnets" "default" {
 
 #CREATION OF SECURITY GROUPS
 resource "aws_security_group" "my_sg" {
-    name        = "my-security-group"
-    description = "My security group"
+    name        = "my-SG-G"
+    description = "Allow SSH and HTTP traffic"
     vpc_id      = data.aws_vpc.default.id
 
     ingress {
@@ -36,7 +36,7 @@ resource "aws_security_group" "my_sg" {
         cidr_blocks = ["0.0.0.0/0"]
     }
     tags = {
-        Name = "my-security"
+        Name = "TF-SG"
     }
   
 }
@@ -79,6 +79,7 @@ resource "aws_launch_template" "my_launch_tamplate"{
         image_id      = var.ami
         instance_type = var.instance_type
         key_name      = var.key_name
+        vpc_security_group_ids = [aws_security_group.my_sg.id]
         user_data    = filebase64("/home/ubuntu/Terraform/day_3/user_data.sh")
 
 }
