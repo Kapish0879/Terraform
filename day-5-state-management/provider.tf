@@ -10,7 +10,10 @@ terraform {
     key    = "terraform.tfstate"
     region = "us-east-1"
     profile = "kapish"
-    use_local_state = true
-    shared_credentials_files = ["/root/.aws/credentials"]
+    use_lockfile = true
+    shared_credentials_files = ["/home/ubuntu/.aws/credentials"]
   }
 }
+
+
+
