@@ -6,7 +6,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "kapish-tf-state"
+    bucket = "terraform-practice-cbz"
     key    = "terraform.tfstate"
     region = "us-east-1"
     profile = "kapish"
@@ -14,6 +14,7 @@ terraform {
     shared_credentials_files = ["/home/ubuntu/.aws/credentials"]
   }
 }
+
 
 
 
