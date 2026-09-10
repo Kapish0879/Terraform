@@ -1,7 +1,7 @@
 resource "aws_instance" "ec2" {
     for_each = tomap({
         server1 = "t3.micro"
-        server2 = "c7i.flex.large"
+        server2 = "t2.medium"
         server3 = "t3.small"
     })
     ami           = "ami-0b6d9d3d33ba97d99"
